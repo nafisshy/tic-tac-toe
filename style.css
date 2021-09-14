@@ -1,0 +1,35 @@
+body{
+    background-color: #2aa5a5;
+    font-family: 'Architects Daughter';
+}
+
+.scale{
+    transform: scale(3.0);
+    margin-top: 40vh;
+}
+
+button{
+    background-color: #a52a2a;
+    font-family: 'Architects Daughter',monospace;
+    font-size: large;
+    text-align: center;
+    border-radius: 10%;
+    color: beige;
+    border:none;
+    width:150px;
+    margin: 1em;
+    padding: 0.6em;
+}
+
+button:hover{
+    border:5px solid #b83d3d;
+    /*margin:auto;*/
+}
+#container{
+    width:250px;
+    height:250px;
+    background-color:#2aa5a5;
+    text-align: center;
+    margin:auto;
+    padding:20px;
+}
