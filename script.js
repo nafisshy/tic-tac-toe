@@ -1,9 +1,18 @@
 const Gameboard=function (){
     const arr=['','','','','','','','',''];
-    const set=Array(9).fill(false,0);
     const players=[];
+    const winningCombinations =[
+        [0,1,2],
+        [3,4,5],
+        [6,7,8],
+        [0,3,6],
+        [1,4,7],
+        [2,5,8],
+        [0,4,8],
+        [2,4,6]
+    ];
     let turn=true;//true represents player 1 and false represents player 2
-    return {arr,players,turn,set}
+    return {arr,players,turn,winningCombinations}
 
 }();
 
@@ -82,18 +91,14 @@ function displayGrid(){
         grid.style.minHeight="100%";
         grid.dataset.gridNumber=i;
         container.append(grid);
-        grid.addEventListener('click',()=>displayGridElement(grid));
+        grid.addEventListener('click',()=>displayGridElement(grid),{once:true});
     } 
     const turnStatus= document.getElementById('turn-status');
     turnStatus.textContent= `It's `+ Gameboard.players[0].name+`'s Turn!`;
 }
 
 function displayGridElement(grid){
-    if(Gameboard.set[grid.dataset.gridNumber]){
-        return;
-    }
     makeSound('scribble.wav');
-    Gameboard.set[grid.dataset.gridNumber]=true;
     let turnStatus= document.getElementById('turn-status');
     if(Gameboard.turn){
         grid.innerText="X";
@@ -105,5 +110,45 @@ function displayGridElement(grid){
         Gameboard.arr.splice(grid.dataset.gridNumber,1,'O');
         turnStatus.textContent= `It's `+ Gameboard.players[0].name+`'s Turn!`;
     }
+    if(checkWin("X")){//checking if player one wins
+        turnStatus.textContent=  Gameboard.players[0].name+` Wins!`;
+        //stop listening
+        gridStopListening();
+        displayRestartBtn();
+    }
+    if(checkWin("O")){//checking if player two wins
+        turnStatus.textContent=  Gameboard.players[1].name+` Wins!`;
+        //display restart button
+        gridStopListening();
+        displayRestartBtn();
+    }
+    if(isDraw()){
+        //display draw
+        turnStatus.textContent=  `It's a Draw!`;
+        displayRestartBtn();
+    }
     Gameboard.turn=!Gameboard.turn;
+}
+
+function checkWin(sign){
+    return Gameboard.winningCombinations.some(combination=>{
+        return combination.every((index)=>{
+            return Gameboard.arr[index]==sign;
+        });
+    });
+}
+function isDraw(){
+    return Gameboard.arr.every((element)=>{
+        return element=="O"||element=="X";//CHECKING IF EVERY CELL IS FILLED WITH EITHER ZERO OR ONE
+    });
+}
+
+function displayRestartBtn(){
+    const restartbtn=document.getElementById("restart");
+    restartbtn.style.display="block";
+}
+
+function gridStopListening(){
+    const grids=document.querySelectorAll("#container>div");
+    grids.forEach(grid=>grid.removeEventListener('click',displayGridElement(grid)));
 }
