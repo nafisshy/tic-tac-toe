@@ -115,11 +115,13 @@ function displayGridElement(grid){
         turnStatus.textContent=  Gameboard.players[0].name+` Wins!`;
         //stop listening
         displayRestartBtn();
+return;
     }
     if(checkWin("O")){//checking if player two wins
         turnStatus.textContent=  Gameboard.players[1].name+` Wins!`;
         //display restart button
         displayRestartBtn();
+return;
     }
     if(isDraw()){
         //display draw
