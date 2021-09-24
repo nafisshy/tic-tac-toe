@@ -46,6 +46,7 @@ function setPlayerName(){
        container.append(playerInput,submit);
        submit.addEventListener('click',function(){
            makeClickSound();
+           submitted++;
            newplayer= new Player();
            newplayer.name=playerInput.value;
            if(i==1)
