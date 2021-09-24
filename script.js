@@ -36,7 +36,7 @@ function removeBigHeading(){
 
 function setPlayerName(){
     const container= document.getElementById('container');
-    let newPlayer;
+    let newPlayer, submitted=0;
     for(let i=1;i<=2;i++){
        const playerInput=document.createElement('input');
        playerInput.style.height="20px";
@@ -55,7 +55,7 @@ function setPlayerName(){
            Gameboard.players.push(newplayer);
            playerInput.remove();
            submit.remove();
-           if(i==2){
+           if(submitted==2){
                displayGrid();
            }
        });
@@ -113,13 +113,11 @@ function displayGridElement(grid){
     if(checkWin("X")){//checking if player one wins
         turnStatus.textContent=  Gameboard.players[0].name+` Wins!`;
         //stop listening
-        gridStopListening();
         displayRestartBtn();
     }
     if(checkWin("O")){//checking if player two wins
         turnStatus.textContent=  Gameboard.players[1].name+` Wins!`;
         //display restart button
-        gridStopListening();
         displayRestartBtn();
     }
     if(isDraw()){
@@ -146,9 +144,4 @@ function isDraw(){
 function displayRestartBtn(){
     const restartbtn=document.getElementById("restart");
     restartbtn.style.display="block";
-}
-
-function gridStopListening(){
-    const grids=document.querySelectorAll("#container>div");
-    grids.forEach(grid=>grid.removeEventListener('click',displayGridElement(grid)));
 }
