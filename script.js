@@ -147,4 +147,5 @@ function isDraw(){
 function displayRestartBtn(){
     const restartbtn=document.getElementById("restart");
     restartbtn.style.display="block";
+    restarbtn.addEventListener('click', ()=>displayGrid());
 }
