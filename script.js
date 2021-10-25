@@ -82,7 +82,6 @@ function displayGrid(){
     container.style.gridGap="5px";
     for(let i=0;i<9;i++){
         const grid= document.createElement('div');
-        grid.classList.toggle="cell";
         grid.style.backgroundColor="#2aa5a5";
         grid.style.color="brown";
         grid.style.display="flex";
@@ -148,8 +147,4 @@ function isDraw(){
 function displayRestartBtn(){
     const restartbtn=document.getElementById("restart");
     restartbtn.style.display="block";
-    restarbtn.addEventListener('click', ()=>function{
-const cells= document.querySelectorAll('.cell');
-cells.forEach((cell)=>cell.remove());
-displayGrid());}
 }
