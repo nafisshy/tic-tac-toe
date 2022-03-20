@@ -157,10 +157,17 @@ function restarting(restartbtn){
         //Access the container div and remove it entirely
         const container= document.getElementById('container');
         container.remove();
-        //Also remove the tag that displays turn status and winning message
-        let turnStatus= document.getElementById('turn-status');
-        turnStatus.remove();
-        //create New container div
+        //remove the restartbutton itself
+        restartbtn.style.display="none";
+        //create New container div and append after the h1 tag
+        const newcontainer= document.createElement('div');
+        newcontainer.setAttribute("id", "container");
+        const h1=document.querySelector('h1');
+        h1.parentNode.insertBefore(newcontainer, h1.nextSibling)
+        //display a fresh grid inside the new container
+        displayGrid();
+        //rest the array that contains the main game scribble data
+        Gameboard.arr=['','','','','','','','','']; 
         
     });
 }
