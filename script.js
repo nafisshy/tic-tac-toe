@@ -147,4 +147,20 @@ function isDraw(){
 function displayRestartBtn(){
     const restartbtn=document.getElementById("restart");
     restartbtn.style.display="block";
+    //Adding functionality to restart button
+    restarting(restartbtn);
+}
+
+function restarting(restartbtn){
+    //adding click event
+    restartbtn.addEventListener('click',()=>{
+        //Access the container div and remove it entirely
+        const container= document.getElementById('container');
+        container.remove();
+        //Also remove the tag that displays turn status and winning message
+        let turnStatus= document.getElementById('turn-status');
+        turnStatus.remove();
+        //create New container div
+        
+    });
 }
