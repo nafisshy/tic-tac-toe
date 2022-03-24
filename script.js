@@ -154,19 +154,18 @@ function displayRestartBtn(){
 function restarting(restartbtn){
     //adding click event
     restartbtn.addEventListener('click',()=>{
-        //Access the container div and remove it entirely
+        //Access the container div 
         const container= document.getElementById('container');
-        container.remove();
         //remove the restartbutton itself
         restartbtn.style.display="none";
-        //create New container div and append after the h1 tag
+        //create New container div and add an id of container
         const newcontainer= document.createElement('div');
         newcontainer.setAttribute("id", "container");
-        const h1=document.querySelector('h1');
-        h1.parentNode.insertBefore(newcontainer, h1.nextSibling)
-        //display a fresh grid inside the new container
+        //replace the old container with the new container 
+        document.body.replaceChild(newcontainer, container);
+         //display a fresh grid inside the new container
         displayGrid();
-        //rest the array that contains the main game scribble data
+        //reset the array that contains the main game scribble data
         Gameboard.arr=['','','','','','','','','']; 
         
     });
