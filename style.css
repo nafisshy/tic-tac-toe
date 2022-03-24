@@ -3,12 +3,13 @@ body{
     font-family: 'Architects Daughter';
     text-align: center;
 }
-
-.scale{
-    transform: scale(3.0);
-    margin-top: 40vh;
+@media only screen and (min-width: 768px) {
+    /* For desktop: */
+    .scale{
+        transform: scale(3.0);
+        margin-top: 40vh;
+    }
 }
-
 button{
     background-color: #a52a2a;
     font-family: 'Architects Daughter',monospace;
