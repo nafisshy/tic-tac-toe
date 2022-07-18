@@ -111,6 +111,7 @@ function displayGridElement(grid){
         Gameboard.arr.splice(grid.dataset.gridNumber,1,'O');
         turnStatus.textContent= `It's `+ Gameboard.players[0].name+`'s Turn!`;
     }
+    Gameboard.turn=!Gameboard.turn;
     if(checkWin("X")){//checking if player one wins
         turnStatus.textContent=  `Congratulations! `+Gameboard.players[0].name+` Wins!`;
         displayRestartBtn();
@@ -127,7 +128,7 @@ return;
         turnStatus.textContent=  `It's a Draw!`;
         displayRestartBtn();
     }
-    Gameboard.turn=!Gameboard.turn;
+  
 }
 
 function checkWin(sign){
@@ -167,10 +168,14 @@ function restarting(restartbtn){
         //reset the array that contains the main game scribble data
         Gameboard.arr=['','','','','','','','','']; 
         ///swap player turns
-        Gameboard.turn=false;
+        //display turn Status
         const turnStatus= document.getElementById('turn-status');
-        turnStatus.textContent= `It's `+ Gameboard.players[1].name+`'s Turn!`;
-        //swap player turns
+        if(Gameboard.turn){
+            turnStatus.textContent= `It's `+ Gameboard.players[0].name+`'s Turn!`;
+        }
+        else{
+            turnStatus.textContent= `It's `+ Gameboard.players[1].name+`'s Turn!`;
+        }
         
     });
 }
