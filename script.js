@@ -166,11 +166,11 @@ function restarting(restartbtn){
         displayGrid();
         //reset the array that contains the main game scribble data
         Gameboard.arr=['','','','','','','','','']; 
-        //reset the game turn 
-        Gameboard.turn=true;
+        ///swap player turns
+        Gameboard.turn=false;
+        const turnStatus= document.getElementById('turn-status');
+        turnStatus.textContent= `It's `+ Gameboard.players[1].name+`'s Turn!`;
         //swap player turns
-        let player= Gameboard.players[0].name;
-        Gameboard.players[0].name=Gameboard.players[1].name;
-        Gameboard.players[1].name=player;   
+        
     });
 }
