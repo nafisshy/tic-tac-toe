@@ -167,6 +167,8 @@ function restarting(restartbtn){
         displayGrid();
         //reset the array that contains the main game scribble data
         Gameboard.arr=['','','','','','','','','']; 
+        //reset the game turn 
+        Gameboard.turn=true;
         
     });
 }
