@@ -113,7 +113,6 @@ function displayGridElement(grid){
     }
     if(checkWin("X")){//checking if player one wins
         turnStatus.textContent=  `Congratulations! `+Gameboard.players[0].name+` Wins!`;
-        //stop listening
         displayRestartBtn();
 return;
     }
@@ -169,6 +168,9 @@ function restarting(restartbtn){
         Gameboard.arr=['','','','','','','','','']; 
         //reset the game turn 
         Gameboard.turn=true;
-        
+        //swap player turns
+        let player= Gameboard.players[0].name;
+        Gameboard.players[0].name=Gameboard.players[1].name;
+        Gameboard.players[1].name=player;   
     });
 }
